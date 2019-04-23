@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import './pages/landing_page.dart';
 import './pages/login_page.dart';
-import './pages/article_page.dart';
-
+import './pages/main_app.dart';
+import './pages/account_section.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: new ArticlePage(),
+      home: new AccountSection(),
     );
   }
 }

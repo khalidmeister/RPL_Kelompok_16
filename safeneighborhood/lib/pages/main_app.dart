@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 
-class ArticlePage extends StatefulWidget{
+class MainApp extends StatefulWidget{
   @override
-  ArticlePageState createState() => ArticlePageState();
+  MainAppState createState() => MainAppState();
 }
 
-class ArticlePageState extends State<ArticlePage>{
+class MainAppState extends State<MainApp>{
   // Menampilkan indeks dan jusul saat ini
   int _selectedIndex = 0;
   String _pageTitle = "Home";
@@ -16,7 +16,12 @@ class ArticlePageState extends State<ArticlePage>{
   Widget build(BuildContext context){
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text("SafeNeighborhood: " + _pageTitle),
+        title: new Text(
+          "SafeNeighborhood: " + _pageTitle,
+          style: new TextStyle(
+            color: Colors.white,
+          ),
+        ),
         backgroundColor: Colors.lightBlueAccent,
       ),
       body: new Center(
@@ -30,7 +35,7 @@ class ArticlePageState extends State<ArticlePage>{
           BottomNavigationBarItem(icon: new Icon(Icons.account_circle), title: new Text("Account")),
         ],
         currentIndex: _selectedIndex,
-        fixedColor: Colors.lightBlueAccent,
+        fixedColor: Colors.lightBlue,
         unselectedItemColor: Colors.blueGrey,
         onTap: _onItemTapped,
       ),

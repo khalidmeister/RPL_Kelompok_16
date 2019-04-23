@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './main_app.dart';
 
 class LoginPage extends StatelessWidget{
   final TextEditingController _usernameTextController = new TextEditingController();
@@ -12,8 +13,9 @@ class LoginPage extends StatelessWidget{
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           new KomponenLogin("Username", _usernameTextController),
-          new Divider(height: 16.0,),
+          new SizedBox(height: 20.0,),
           new KomponenLogin("Password", _passwordTextController),
+          new SizedBox(height: 20.0,),
           new TombolSubmit(),
         ],
       )
@@ -63,7 +65,12 @@ class TombolSubmit extends StatelessWidget{
         ),
         child: new RaisedButton(
           color: Colors.red,
-          onPressed: () => print("Tombol Login Berhasil"),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => MainApp()),
+            );
+          },
           child: new Container(
             padding: new EdgeInsets.all(13.0),
             child: new Text(
