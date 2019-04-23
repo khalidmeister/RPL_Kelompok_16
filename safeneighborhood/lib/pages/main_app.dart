@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-
+import 'account_section.dart';
+import 'home_section.dart';
+import 'search_section.dart';
+import 'article_section.dart';
 
 class MainApp extends StatefulWidget{
   @override
@@ -8,6 +11,12 @@ class MainApp extends StatefulWidget{
 
 class MainAppState extends State<MainApp>{
   // Menampilkan indeks dan jusul saat ini
+  List<Widget> pages = [
+    new HomeSection(),
+    new SearchSection(),
+    new ArticleSection(),
+    new AccountSection(),
+  ];
   int _selectedIndex = 0;
   String _pageTitle = "Home";
   
@@ -15,18 +24,7 @@ class MainAppState extends State<MainApp>{
   @override
   Widget build(BuildContext context){
     return new Scaffold(
-      appBar: new AppBar(
-        title: new Text(
-          "SafeNeighborhood: " + _pageTitle,
-          style: new TextStyle(
-            color: Colors.white,
-          ),
-        ),
-        backgroundColor: Colors.lightBlueAccent,
-      ),
-      body: new Center(
-        child: new Text("Ini Page dari " + _pageTitle),
-      ),
+      body: pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: new Icon(Icons.home), title: new Text("Home")),
@@ -46,19 +44,6 @@ class MainAppState extends State<MainApp>{
 
     // Ini akan mengupdate state yang ada di tampilan aplikasi
     setState(() {
-      switch (index) {
-        case 0:
-          _pageTitle = "Home";
-          break;
-        case 1:
-          _pageTitle = "Search";
-          break;
-        case 2:
-          _pageTitle = "Article";
-          break;
-        default:
-          _pageTitle = "Account";
-      }
      _selectedIndex = index; 
     }
     );
