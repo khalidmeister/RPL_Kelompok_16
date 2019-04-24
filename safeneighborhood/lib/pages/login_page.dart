@@ -7,15 +7,15 @@ class LoginPage extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return new Material(
-      color: Colors.lightBlueAccent,
+      color: Colors.blueAccent,
       child: new Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           new KomponenLogin("Username", _usernameTextController),
-          new SizedBox(height: 20.0,),
+          new SizedBox(height: 2.0,),
           new KomponenLogin("Password", _passwordTextController),
-          new SizedBox(height: 20.0,),
+          new SizedBox(height: 2.0,),
           new TombolSubmit(),
         ],
       )
@@ -32,17 +32,25 @@ class KomponenLogin extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return new Container(
+      padding: EdgeInsets.all(16.0),
       child: new Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           new Text(_subkata, style: TextStyle(color: Colors.white, fontSize: 18.0)),
           new Container(
-            padding: EdgeInsets.all(16.0),
+            padding: EdgeInsets.only(top: 8.0),
             child: new TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
+                contentPadding: EdgeInsets.all(16.0),
+                labelText: _subkata,
+              ),
               obscureText: _subkata == "Password" ? true : false,
               controller: textEditingController,
               style: TextStyle(
                 color: Colors.white,
               ),
+              
             ),
           ),
         ],
