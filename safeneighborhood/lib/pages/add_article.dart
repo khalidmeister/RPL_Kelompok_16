@@ -7,7 +7,7 @@ class AddArticle extends StatelessWidget {
   TextEditingController _isiController = TextEditingController();
 
   void addData(){
-    var url = "http://192.168.0.113/tabel_sn/add_data.php";
+    var url = "http://192.168.0.110/tabel_sn/add_data.php";
     http.post(url, body:
       {
         "judul": _judulController.text,
@@ -62,9 +62,6 @@ class AddArticle extends StatelessWidget {
                     onPressed: () {
                       addData();
                       Navigator.pop(context);
-                      /*print(_isiController.text);
-                      print(_judulController.text);
-                      print(_subJudulController.text);*/
                     },
                     color: Colors.blueAccent,
                     child: new Text("Submit", style: TextStyle(fontSize: 12.0, color: Colors.white),),

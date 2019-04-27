@@ -38,7 +38,7 @@ class ArticleList extends StatefulWidget {
 
 class _ArticleListState extends State<ArticleList> {
   Future<List> getData() async{
-    final response = await http.get("http://192.168.0.113/tabel_sn/get_data.php");
+    final response = await http.get("http://192.168.0.110/tabel_sn/get_data.php");
     return json.decode(response.body);
   }
   

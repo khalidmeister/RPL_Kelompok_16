@@ -1,6 +1,10 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:core';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'add_alert.dart';
+import 'package:http/http.dart' as http;
 
 class HomeSection extends StatelessWidget{
   @override
@@ -25,36 +29,66 @@ class MapsState extends State<Maps>{
 
   static final CameraPosition _kGooglePlex = new CameraPosition(
     target: LatLng(-6.5637955,106.7190907),
-    zoom: 20,
+    zoom: 11.0,
   );
 
-  static final CameraPosition _kLake = CameraPosition(
-    bearing: 192.8334901395799,
-    target: LatLng(37.43296265331129, -122.08832357078792),
-    tilt: 59.440717697143555,
-    zoom: 19.151926040649414
-  );
+  Set<Marker> _markers = {};
+
+  List isi;
+
+  Future<String> getData() async{
+    final response = await http.get("http://192.168.0.110/tabel_sn/get_data_maps.php");
+     
+    setState(() {
+      isi = json.decode(response.body);
+    
+      for(var i = 0; i < isi.length; i++){
+        _markers.add(Marker(
+          markerId: MarkerId(isi[i]['alert_id'].toString()),
+          position: LatLng(double.parse(isi[i]['latitude']), double.parse(isi[i]['longitude'])),
+          infoWindow: InfoWindow(
+            title: isi[i]['deskripsi'],
+            snippet: DateTime.parse(isi[i]['tanggal']).toString(),
+          ),
+          icon: BitmapDescriptor.defaultMarker,
+          )
+        );
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context){
     return new Scaffold(
-      body: GoogleMap(
-        mapType: MapType.normal,
-        initialCameraPosition: _kGooglePlex,
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
-        },
+      body: Stack( 
+        children: <Widget>[
+          GoogleMap(
+            initialCameraPosition: _kGooglePlex,
+            onMapCreated: (GoogleMapController controller) {
+              _controller.complete(controller);
+              getData();
+              print(isi[0]['latitude']);
+            },
+            markers: _markers,
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: new Container(
+              padding: EdgeInsets.all(16.0),
+              child: FloatingActionButton(
+                backgroundColor: Colors.redAccent,
+                child: Icon(Icons.add_alert),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AddAlert())
+                  );
+                },
+              ),
+            ),
+          ),
+        ],
       ),
-      /*floatingActionButton: FloatingActionButton.extended(
-        onPressed: _goToTheLake(),
-        label: new Text('To The Lake!'),
-        icon: new Icon(Icons.directions_boat),
-      ),*/
     );
-  }
-
-  Future<void> _goToTheLake() async{
-    final GoogleMapController controller = await _controller.future;
-    controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
   }
 }
