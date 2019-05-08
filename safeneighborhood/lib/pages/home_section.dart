@@ -37,7 +37,7 @@ class MapsState extends State<Maps>{
   List isi;
 
   Future<String> getData() async{
-    final response = await http.get("http://192.168.0.110/tabel_sn/get_data_maps.php");
+    final response = await http.get("http://10.1.206.161/tabel_sn/get_data_maps.php");
      
     setState(() {
       isi = json.decode(response.body);
@@ -64,6 +64,7 @@ class MapsState extends State<Maps>{
         children: <Widget>[
           GoogleMap(
             initialCameraPosition: _kGooglePlex,
+            myLocationEnabled: true,
             onMapCreated: (GoogleMapController controller) {
               _controller.complete(controller);
               getData();

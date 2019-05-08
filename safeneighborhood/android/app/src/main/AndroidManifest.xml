@@ -10,8 +10,10 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="safeneighborhood"
         android:icon="@mipmap/ic_launcher">
+        
         <meta-data android:name  = "com.google.android.geo.API_KEY"
-                   android:value = "AIzaSyC4jTPpz2QMZ6sHUrIDZXchz_3Ov1mdDEs" />
+                   android:value = "AIzaSyC4jTPpz2QMZ6sHUrIDZXchz_3Ov1mdDEs" />>
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

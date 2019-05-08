@@ -7,11 +7,10 @@ class AddArticle extends StatelessWidget {
   TextEditingController _isiController = TextEditingController();
 
   void addData(){
-    var url = "http://192.168.0.110/tabel_sn/add_data.php";
+    var url = "http://10.1.206.161/tabel_sn/add_data.php";
     http.post(url, body:
       {
         "judul": _judulController.text,
-        "sub_judul": _subJudulController.text,
         "deskripsi": _isiController.text,
       }
     );
@@ -35,14 +34,6 @@ class AddArticle extends StatelessWidget {
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.all(16.0),
                     labelText: "Judul dari artikel",
-                  ),
-                ),
-                new SizedBox(height: 10.0),
-                new TextField(
-                  controller: _subJudulController,
-                  decoration: InputDecoration(
-                    contentPadding: EdgeInsets.all(16.0),
-                    labelText: "Sub-Judul dari artikel",
                   ),
                 ),
                 new SizedBox(height: 10.0),

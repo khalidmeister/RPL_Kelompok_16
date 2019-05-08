@@ -82,7 +82,7 @@ class TombolSubmit extends StatelessWidget{
           child: new Container(
             padding: new EdgeInsets.all(13.0),
             child: new Text(
-              "Log In",
+              "Masuk",
               style: TextStyle(
                 color: Colors.white,
               ),

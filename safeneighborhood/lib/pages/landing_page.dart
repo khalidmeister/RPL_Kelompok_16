@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../pages/main_app.dart';
 import '../pages/login_page.dart';
+import '../pages/register_page.dart';
 
 class LandingPage extends StatelessWidget{
   @override
@@ -40,7 +41,7 @@ class TombolAkun extends StatelessWidget{
       child: new RaisedButton(
         color: Colors.white,
         onPressed: () {
-          Navigator.push(context, new MaterialPageRoute(builder: (context) => _kondisi == "LOG IN" ? LoginPage() : null));
+          Navigator.push(context, new MaterialPageRoute(builder: (context) => _kondisi == "LOG IN" ? LoginPage() : RegisterPage()));
         },
         child: new Container(
           padding: EdgeInsets.all(8.0),

@@ -14,7 +14,7 @@ class AddAlert extends StatelessWidget {
   double lng = 0.0;
   
   void _onSubmit(){
-    var url = "http://192.168.0.110/tabel_sn/add_data_alert.php";
+    var url = "http://10.1.206.161/tabel_sn/add_data_alert.php";
     http.post(url, body: 
       {
         "deskripsi": _deskripsiController.text,

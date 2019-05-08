@@ -3,7 +3,7 @@ import 'add_article.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-
+import 'article_detail.dart';
 
 class ArticleSection extends StatelessWidget{
   @override
@@ -38,10 +38,10 @@ class ArticleList extends StatefulWidget {
 
 class _ArticleListState extends State<ArticleList> {
   Future<List> getData() async{
-    final response = await http.get("http://192.168.0.110/tabel_sn/get_data.php");
+    final response = await http.get("http://10.1.206.161/tabel_sn/get_data.php");
     return json.decode(response.body);
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return new FutureBuilder<List>(
@@ -66,7 +66,13 @@ class ItemList extends StatelessWidget {
         return ListTile(
           leading: Icon(Icons.widgets),
           title: new Text(list[i]["judul"]),
-          subtitle: new Text(list[i]["sub_judul"]),
+          subtitle: new Text(""),
+          onTap: () {
+            Navigator.push(
+              context, 
+              MaterialPageRoute(builder: (context) => ArticleDetail(index: i, list: list))
+            );
+          },
         );
       },
     );

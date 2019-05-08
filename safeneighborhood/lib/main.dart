@@ -3,6 +3,7 @@ import './pages/landing_page.dart';
 import './pages/login_page.dart';
 import './pages/main_app.dart';
 import './pages/account_section.dart';
+import './pages/register_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,7 +16,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: new LoginPage(),
+      home: new LandingPage(),
+      //debugShowCheckedModeBanner: false,
     );
   }
 }
